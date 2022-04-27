@@ -6,13 +6,13 @@ namespace Library
     public class SpellBook
     {
         private string name;
-        public List<Spell> spells { get; private set; }
+        public static List<Spell> spells { get; private set; }
         public int spellsCount = 0;
 
         public SpellBook(string name)
         {
             this.name = name;
-            this.spells = new List<Spell> { };
+            spells = new List<Spell> { };
         }
 
         /// <summary>
@@ -32,8 +32,11 @@ namespace Library
             }
         }
 
-/*
-        public int TotalDamageBook()
+        /// <summary>
+        /// Metodo para calular el daño total del libro del mago en base a los hechizos que el libro contenga.
+        /// </summary>
+        /// <returns></returns>
+        public static int TotalDamageBook()
         {
             int damageBook = 0;
             foreach (Spell spellsInBook in spells)
@@ -41,7 +44,7 @@ namespace Library
                 damageBook = spellsInBook.Effect;
             }
             return damageBook;
+        }
 
-        }*/
     }
 }

@@ -10,7 +10,7 @@ namespace Library
         {
             this.Name = name;
             this.Health = health;
-            Attack = attack;
+            Attack = attack + SpellBook.TotalDamageBook();
             this.inventory = new List<Item> { };
         }
         private string name;
@@ -66,18 +66,29 @@ namespace Library
             }
         }
 
-/*
+        /// <summary>
+        /// Metodo para recibir el ataque el cual realiza el calculo al daño en base a la armadura;
+        /// </summary>
+        /// <param name="damage"></param>
         public void ReciveAttack(int damage)
         {
+            this.health += (damage * 10) / this.armor;
 
         }
 
+        /// <summary>
+        /// Metodo para curar al personaje y restaura su vida al 100
+        /// </summary>
         public void cure()
         {
-
+            this.health = 100;
+            Console.WriteLine($"El personaje {this.name} ha sido curado y su vida se restauro a {this.health}");
         }
-        */
 
+        /// <summary>
+        /// Metodo para equipar el item al inventario del personaje.
+        /// </summary>
+        /// <param name="item"></param>
         public void EquipItem(Item item)
         {
             bool agregado = false;
@@ -102,9 +113,8 @@ namespace Library
                 this.inventory.Add(item);
                 this.attack = this.attack + item.ReturnDamage();
                 this.armor = this.armor + item.ReturnArmor();
-                System.Console.WriteLine($"Objeto {item.ReturnName()} agregado correctamente al personale {this.name}.");
+                System.Console.WriteLine($"Objeto {item.ReturnName()} agregado correctamente al personaje {this.name}.");
             }
-            
         }
 
         public void ChangeItem(Item oldItem, Item newItem)
@@ -118,9 +128,13 @@ namespace Library
             this.inventory.Remove(item);
             this.attack = this.attack - item.ReturnDamage();
             this.armor = this.armor - item.ReturnArmor();
+            Console.WriteLine($"El objeto {item.ReturnName()} ha sido quitado del inventario correctamente");
         }
 
-        public void ReturnAttackValue()
+        /// <summary>
+        /// Se calcula el daño total del personaje en base a los items que contenga en su inventario y el poder que ya tiene por ser un mago(junto a su SpellBook).
+        /// </summary>
+        public void ReturnTotalAttack()
         {
             int attackValue = 0;
             foreach (Item items in this.inventory)
@@ -129,6 +143,15 @@ namespace Library
             }
             Console.WriteLine($"El daño total del personaje {this.name} es de {attackValue}");
         }
-        
+
+        public int ReturnTotalDefense()
+        {
+            Console.WriteLine($"la defensa total del personaje {this.name} es de {this.armor}");
+            return this.armor;
+
+        }
+
+
+
     }
 }
