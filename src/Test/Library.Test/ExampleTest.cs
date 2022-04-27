@@ -11,6 +11,7 @@ namespace Test.Library
         public void dummyTest()
         {
             Assert.True(true);
+            
         }
 
     }
