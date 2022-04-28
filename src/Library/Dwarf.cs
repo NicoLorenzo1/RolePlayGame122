@@ -103,6 +103,27 @@ namespace Library
             }
         }
 
+        public void ChangeItem(Item oldItem, Item newItem)
+        {
+            this.Inventory.Remove(oldItem);
+            this.Inventory.Add(newItem);
+        }
         
+        public void RemoveItem(Item item)
+        {
+            this.Inventory.Remove(item);
+            this.Armor -= item.ReturnArmor();
+            this.Attack -= item.ReturnDamage();
+        }
+
+        public void ReturnTotalAttack()
+        {
+            int attackValue = this.Attack;
+            foreach (Item item in this.Inventory)
+            {
+                attackValue += item.ReturnDamage();
+            }
+            Console.WriteLine($"El ataque total del personaje {this.Name} es {attackValue}");
+        }
     }
 }
