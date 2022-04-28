@@ -85,12 +85,6 @@ namespace Library
             {
                 if (value.ReturnName() == item.ReturnName())
                 {
-                    this.Inventory.Remove(value);
-                    this.Inventory.Add(item);
-                    this.Attack -= value.ReturnDamage();
-                    this.Armor -= value.ReturnArmor();
-                    this.Attack += item.ReturnDamage();
-                    this.Armor += item.ReturnArmor();
                     added = true;
                 }
             }
