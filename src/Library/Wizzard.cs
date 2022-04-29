@@ -15,10 +15,12 @@ namespace Library
         public Wizzard(string name, int attack, SpellBook book)
         {
             this.Name = name;
+            this.Book = book;
             this.attack = attack + SpellBook.TotalDamageBook();
             this.Inventory = new List<Item> { };
         }
         private string name;
+        private SpellBook Book;
         private int health = 100;
         private int attack;
         private int armor;

@@ -57,7 +57,7 @@ namespace Library
                 this.Armor = value;
             }
         }
-         public List<Item> inventory
+        public List<Item> inventory
         {
             get
             {
@@ -123,6 +123,13 @@ namespace Library
         public int TotalAttack()
         {
             int attackValue = this.attack;
+            return attackValue;
+        }
+
+        public int ReturnTotalAttack()
+        {
+            int attackValue =  this.attack;
+            Console.WriteLine($"El daño total del personaje {this.name} es de {attackValue}");
             return attackValue;
         }
 
