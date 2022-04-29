@@ -1,7 +1,7 @@
 ﻿using System;
 using Library;
 
-namespace Program
+namespace Pprogram
 {
     class Program
     {
