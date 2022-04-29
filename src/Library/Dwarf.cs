@@ -102,13 +102,14 @@ namespace Library
             this.Attack -= item.ReturnDamage();
         }
 
+        /// <summary>
+        /// Metodo que retorna el ataque total del personaje Elf en base a los items que tiene equipados en el inventario y su propio ataque
+        /// Este metodo es usado para calcular el daño que debe realizarle al enemigo.
+        /// </summary>
+        /// <returns></returns>
         public int TotalAttack()
         {
-            int attackValue = this.Attack;
-            foreach (Item item in this.Inventory)
-            {
-                attackValue = item.ReturnDamage() + this.attack;
-            }
+            int attackValue = this.attack;
             return attackValue;
         }
 
@@ -117,21 +118,14 @@ namespace Library
         /// </summary>
         public void ReturnTotalAttack()
         {
-            int attackValue = 0;
-            foreach (Item items in this.Inventory)
-            {
-                attackValue = items.ReturnDamage() + this.attack;
-            }
+            int attackValue = this.attack;
             Console.WriteLine($"El daño total del personaje {this.name} es de {attackValue}");
         }
 
         public int ReturnTotalDefense()
         {
-            int totalDefense = 0;
-            foreach (Item items in this.Inventory)
-            {
-                totalDefense = items.ReturnArmor();
-            }
+            int totalDefense = this.armor;
+
             Console.WriteLine($"La defensa total del personaje {this.name} es de {totalDefense}");
             return totalDefense;
         }

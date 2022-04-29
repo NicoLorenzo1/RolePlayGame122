@@ -14,11 +14,13 @@ namespace Pprogram
 
             //Se crea el personaje Wizzard junto a sus items y se lo equipa.
             Wizzard wizzard = new Wizzard("mago", 5, WizardBook);
-            Item WizzardArmor = new Item("ArmorWizzard", 0, 20);
+            Item WizzardArmor = new Item("ArmorWizzard",0, 20);
             Item Sword = new Item("espada", 25, 0);
+            Item Sword2 = new Item("espada2", 50, 0);
+
             wizzard.EquipItem(WizzardArmor);
             wizzard.EquipItem(Sword);
-
+            wizzard.EquipItem(Sword2);
 
             //Se crea el personaje Dwarf junto a sus items y se lo equipa.
             Dwarf dwarf = new Dwarf("dwarf", 20);
