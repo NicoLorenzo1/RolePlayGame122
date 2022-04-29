@@ -91,21 +91,15 @@ namespace Library
         /// <param name="item"></param>
         public void EquipItem(Item item)
         {
-            bool agregado = false;
+
             ///Se recorre el inventario por si el item que se busca implementar ya se encuentra. En caso de que no se encuentre se agrega fuera del condicional.
+            bool agregado = false;
             foreach (Item value in this.inventory)
             {
                 if (value.ReturnName() == item.ReturnName())
                 {
-                    this.inventory.Remove(value);
-                    this.inventory.Add(item);
-                    /// se elimina el daño y armadura del objeto anterior
-                    this.attack -= value.ReturnDamage();
-                    this.armor -= value.ReturnArmor();
-                    /// se agrega el daño y la armadura del objeto
-                    this.attack = this.attack + item.ReturnDamage();
-                    this.armor = this.armor + item.ReturnArmor();
                     agregado = true;
+                    Console.WriteLine($"El objeto {item.ReturnName()} ya se encuentra dentro del inventario del personaje {this.name}");
                 }
             }
             if (!agregado)
@@ -113,7 +107,7 @@ namespace Library
                 this.inventory.Add(item);
                 this.attack = this.attack + item.ReturnDamage();
                 this.armor = this.armor + item.ReturnArmor();
-                System.Console.WriteLine($"Objeto {item.ReturnName()} agregado correctamente al personaje {this.name}.");
+                Console.WriteLine($"Objeto {item.ReturnName()} agregado correctamente al personaje {this.name}.");
             }
         }
 
@@ -134,7 +128,7 @@ namespace Library
         /// <summary>
         /// Se calcula el daño total del personaje en base a los items que contenga en su inventario y el poder que ya tiene por ser un mago(junto a su SpellBook).
         /// </summary>
-        public void ReturnTotalAttack()
+        public int ReturnTotalAttack()
         {
             int attackValue = 0;
             foreach (Item items in this.inventory)
@@ -142,13 +136,18 @@ namespace Library
                 attackValue = items.ReturnDamage() + this.attack;
             }
             Console.WriteLine($"El daño total del personaje {this.name} es de {attackValue}");
+            return attackValue;
         }
 
         public int ReturnTotalDefense()
         {
-            Console.WriteLine($"la defensa total del personaje {this.name} es de {this.armor}");
-            return this.armor;
-
+            int totalDefense = 0;
+            foreach (Item items in this.inventory)
+            {
+                totalDefense = items.ReturnArmor() + this.Armor;
+            }
+            Console.WriteLine($"La defensa total del personaje {this.name} es de {totalDefense}");
+            return totalDefense;
         }
 
 
