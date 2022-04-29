@@ -166,6 +166,9 @@ namespace Test.Library
             Assert.AreEqual(45, wizzard.ReturnTotalAttack());
         }
 
+        /// <summary>
+        /// Test que se encarga de verificar el metodo que retorna la defensa total del personaje.
+        /// </summary>
         [Test]
         public void ReturnTotalDefenseTest()
         {
