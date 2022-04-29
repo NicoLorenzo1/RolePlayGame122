@@ -7,16 +7,13 @@ namespace Library
     {
 
         private string Name;
-        private int Health;   
-        private Item Item;
+        private int Health = 100;
         private int Attack;
         private int Armor;
-        private List<Item> Inventory {get; set;  }
-        public Dwarf(string name, int health, Item item, int attack, int armor)
+        private List<Item> Inventory { get; set; }
+        public Dwarf(string name, int attack, int armor)
         {
             this.Name = name;
-            this.Health = health;
-            this.Item = item;
             this.Attack = attack;
             this.Armor = armor;
             this.Inventory = new List<Item> { };
@@ -68,12 +65,13 @@ namespace Library
             }
         }
 
-        public void recieveAttack(int damage)
+        public void ReceiveAttack(int damage)
         {
-            this.Health = this.Health - damage;
+            this.health -= damage * 3 / (this.armor + 1);
+            Console.WriteLine($"El personaje {this.name} ha sido atacado y su vida ahora es de {this.health}");
         }
 
-        public void heal()
+        public void healt()
         {
             this.Health = 100;
         }
@@ -102,7 +100,7 @@ namespace Library
             this.Inventory.Remove(oldItem);
             this.Inventory.Add(newItem);
         }
-        
+
         public void RemoveItem(Item item)
         {
             this.Inventory.Remove(item);
@@ -110,14 +108,27 @@ namespace Library
             this.Attack -= item.ReturnDamage();
         }
 
-        public void ReturnTotalAttack()
+        public int TotalAttack()
         {
             int attackValue = this.Attack;
             foreach (Item item in this.Inventory)
             {
-                attackValue += item.ReturnDamage();
+                attackValue += item.ReturnDamage() + this.attack;
             }
-            Console.WriteLine($"El ataque total del personaje {this.Name} es {attackValue}");
+            return attackValue;
+        }
+
+        /// <summary>
+        /// Metodo que retorna el valor total de ataque del personaje Dwarf
+        /// </summary>
+        public void ReturnTotalAttack()
+        {
+            int attackValue = 0;
+            foreach (Item items in this.Inventory)
+            {
+                attackValue = items.ReturnDamage() + this.attack;
+            }
+            Console.WriteLine($"El daño total del personaje {this.name} es de {attackValue}");
         }
     }
 }

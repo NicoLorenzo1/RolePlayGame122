@@ -6,15 +6,14 @@ namespace Library
     public class Wizzard
     {
 
-        public Wizzard(string name, int health, int attack, SpellBook book)
+        public Wizzard(string name, int attack, SpellBook book)
         {
             this.Name = name;
-            this.Health = health;
             Attack = attack + SpellBook.TotalDamageBook();
             this.inventory = new List<Item> { };
         }
         private string name;
-        private int health;
+        private int health = 100;
         private int attack;
         private int armor;
         private SpellBook book;
@@ -70,10 +69,10 @@ namespace Library
         /// Metodo para recibir el ataque el cual realiza el calculo al daño en base a la armadura;
         /// </summary>
         /// <param name="damage"></param>
-        public void ReciveAttack(int damage)
+        public void ReceiveAttack(int damage)
         {
-            this.health += (damage * 10) / this.armor;
-
+            this.health -= damage * 3 / (this.armor + 1);
+            Console.WriteLine($"El personaje {this.name} ha sido atacado y su vida ahora es de {this.health}");
         }
 
         /// <summary>
@@ -126,9 +125,10 @@ namespace Library
         }
 
         /// <summary>
-        /// Se calcula el daño total del personaje en base a los items que contenga en su inventario y el poder que ya tiene por ser un mago(junto a su SpellBook).
+        /// Se calcula el daño total del personaje en base a los items que contenga en su inventario y el poder que ya tiene por ser un mago(junto a su SpellBook)
+        /// el cual se va a usar a la hora de atacar a otro personaje,
         /// </summary>
-        public int ReturnTotalAttack()
+        public int TotalAttack()
         {
             int attackValue = 0;
             foreach (Item items in this.inventory)
@@ -139,6 +139,24 @@ namespace Library
             return attackValue;
         }
 
+        /// <summary>
+        /// Metodo que retorna el valor total de ataque del personaje Wizzard
+        /// </summary>
+        public void ReturnTotalAttack()
+        {
+            int attackValue = 0;
+            foreach (Item items in this.inventory)
+            {
+                attackValue = items.ReturnDamage() + this.attack;
+            }
+            Console.WriteLine($"El daño total del personaje {this.name} es de {attackValue}");
+        }
+
+        /// <summary>
+        /// Metodo que retorna el valor total de defensa del personaje Wizzard
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public int ReturnTotalDefense()
         {
             int totalDefense = 0;
