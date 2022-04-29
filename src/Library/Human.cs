@@ -67,7 +67,7 @@ namespace Library
 
         public void ReceiveAttack(int damage)
         {
-            this.health -= damage * 3 / (this.armor + 1);
+            this.health = this.health - (damage / (this.armor + 1));
             Console.WriteLine($"El personaje {this.name} ha sido atacado y su vida ahora es de {this.health}");
         }
 
