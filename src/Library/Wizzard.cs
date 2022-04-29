@@ -6,19 +6,28 @@ namespace Library
     public class Wizzard
     {
 
+        /// <summary>
+        /// Constructor de la clase wizzard la cual recibe un nombre, un valor de ataque y un libro de hechizos por parametro, la vida de este ya se setea en 100 al crearlo.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="attack"></param>
+        /// <param name="book"></param>
         public Wizzard(string name, int attack, SpellBook book)
         {
             this.Name = name;
             Attack = attack + SpellBook.TotalDamageBook();
-            this.inventory = new List<Item> { };
+            this.Inventory = new List<Item> { };
         }
         private string name;
         private int health = 100;
         private int attack;
         private int armor;
-        private SpellBook book;
-        private List<Item> inventory { get; set; }
+        private List<Item> Inventory { get; set; }
 
+        /// <summary>
+        /// Metodo para devolver el nombre del personaje.
+        /// </summary>
+        /// <value></value>
         public string Name
         {
             get
@@ -30,6 +39,12 @@ namespace Library
                 this.name = value;
             }
         }
+
+        /// <summary>
+        /// Metodo para devolver y modificar la vida del personaje.
+        /// 
+        /// </summary>
+        /// <value></value>
         public int Health
         {
             get
@@ -42,6 +57,10 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Metodo para devolver el valor de ataque del personaje.
+        /// </summary>
+        /// <value></value>
         public int Attack
         {
             get
@@ -50,9 +69,14 @@ namespace Library
             }
             set
             {
-                attack = value;
+                this.attack = value;
             }
+
         }
+        /// <summary>
+        /// Metodo para devolver y modificar la armadura del personaje.
+        /// </summary>
+        /// <value></value>
         public int Armor
         {
             get
@@ -71,7 +95,7 @@ namespace Library
         /// <param name="damage"></param>
         public void ReceiveAttack(int damage)
         {
-            this.health -= damage * 3 / (this.armor + 1);
+            this.health = this.health - (damage / (this.armor + 1));
             Console.WriteLine($"El personaje {this.name} ha sido atacado y su vida ahora es de {this.health}");
         }
 
@@ -90,20 +114,19 @@ namespace Library
         /// <param name="item"></param>
         public void EquipItem(Item item)
         {
-
             ///Se recorre el inventario por si el item que se busca implementar ya se encuentra. En caso de que no se encuentre se agrega fuera del condicional.
             bool agregado = false;
-            foreach (Item value in this.inventory)
+            foreach (Item value in this.Inventory)
             {
                 if (value.ReturnName() == item.ReturnName())
                 {
-                    agregado = true;
                     Console.WriteLine($"El objeto {item.ReturnName()} ya se encuentra dentro del inventario del personaje {this.name}");
+                    agregado = true;
                 }
             }
             if (!agregado)
             {
-                this.inventory.Add(item);
+                this.Inventory.Add(item);
                 this.attack = this.attack + item.ReturnDamage();
                 this.armor = this.armor + item.ReturnArmor();
                 Console.WriteLine($"Objeto {item.ReturnName()} agregado correctamente al personaje {this.name}.");
@@ -112,13 +135,13 @@ namespace Library
 
         public void ChangeItem(Item oldItem, Item newItem)
         {
-            this.inventory.Remove(oldItem);
-            this.inventory.Add(newItem);
+            this.Inventory.Remove(oldItem);
+            this.Inventory.Add(newItem);
             Console.WriteLine($"Objeto {newItem.ReturnName()} cambiado correctamente por {oldItem.ReturnName()}.");
         }
         public void RemoveItem(Item item)
         {
-            this.inventory.Remove(item);
+            this.Inventory.Remove(item);
             this.attack = this.attack - item.ReturnDamage();
             this.armor = this.armor - item.ReturnArmor();
             Console.WriteLine($"El objeto {item.ReturnName()} ha sido quitado del inventario correctamente");
@@ -131,11 +154,10 @@ namespace Library
         public int TotalAttack()
         {
             int attackValue = 0;
-            foreach (Item items in this.inventory)
+            foreach (Item items in this.Inventory)
             {
                 attackValue = items.ReturnDamage() + this.attack;
             }
-            Console.WriteLine($"El daño total del personaje {this.name} es de {attackValue}");
             return attackValue;
         }
 
@@ -145,7 +167,7 @@ namespace Library
         public void ReturnTotalAttack()
         {
             int attackValue = 0;
-            foreach (Item items in this.inventory)
+            foreach (Item items in this.Inventory)
             {
                 attackValue = items.ReturnDamage() + this.attack;
             }
@@ -153,16 +175,15 @@ namespace Library
         }
 
         /// <summary>
-        /// Metodo que retorna el valor total de defensa del personaje Wizzard
-        /// 
+        /// Metodo que retorna el valor total de defensa del personaje Wizzard. 
         /// </summary>
         /// <returns></returns>
         public int ReturnTotalDefense()
         {
             int totalDefense = 0;
-            foreach (Item items in this.inventory)
+            foreach (Item items in this.Inventory)
             {
-                totalDefense = items.ReturnArmor() + this.Armor;
+                totalDefense = items.ReturnArmor();
             }
             Console.WriteLine($"La defensa total del personaje {this.name} es de {totalDefense}");
             return totalDefense;

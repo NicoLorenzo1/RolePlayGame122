@@ -19,12 +19,14 @@ namespace Pprogram
             wizzard.EquipItem(WizzardArmor);
             wizzard.EquipItem(Sword);
 
+
             //Se crea el personaje Dwarf junto a sus items y se lo equipa.
             Dwarf dwarf = new Dwarf("dwarf", 20);
             Item Knife = new Item("Knife", 25, 0);
             Item dwarfArmor = new Item("dwarfArmor", 0, 20);
             dwarf.EquipItem(Knife);
             dwarf.EquipItem(dwarfArmor);
+
 
             //Se crea el personaje Human junto a sus items y se lo equipa.
             Human human = new Human("human", 50);
@@ -40,7 +42,12 @@ namespace Pprogram
             elf.EquipItem(darkKnife);
             elf.EquipItem(elfArmor);
 
+            //Pelea entre los personajes.
             wizzard.ReceiveAttack(dwarf.TotalAttack());
+            elf.ReceiveAttack(wizzard.TotalAttack());
+            human.ReceiveAttack(elf.TotalAttack());
+            dwarf.ReceiveAttack(human.TotalAttack());
+
         }
     }
 }
