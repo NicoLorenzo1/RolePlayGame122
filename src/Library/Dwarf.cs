@@ -67,7 +67,7 @@ namespace Library
 
         public void ReceiveAttack(int damage)
         {
-            this.health -= damage  / (this.armor + 1);
+            this.health = this.health - (damage / (this.armor + 1));
             Console.WriteLine($"El personaje {this.name} ha sido atacado y su vida ahora es de {this.health}");
         }
 
@@ -123,10 +123,11 @@ namespace Library
         /// <summary>
         /// Metodo que retorna el valor total de ataque del personaje Dwarf
         /// </summary>
-        public void ReturnTotalAttack()
+        public int ReturnTotalAttack()
         {
             int attackValue = this.attack;
             Console.WriteLine($"El daño total del personaje {this.name} es de {attackValue}");
+            return attackValue;
         }
 
         public int ReturnTotalDefense()

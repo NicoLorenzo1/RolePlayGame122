@@ -11,6 +11,7 @@ namespace Pprogram
             Spell spell1 = new Spell("fire", "shot of fire", 40);
             SpellBook WizardBook = new SpellBook("WizardBook");
             WizardBook.AddSpell(spell1);
+            
 
             //Se crea el personaje Wizzard junto a sus items y se lo equipa.
             Wizzard wizzard = new Wizzard("mago", 5, WizardBook);

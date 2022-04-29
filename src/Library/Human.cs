@@ -57,7 +57,7 @@ namespace Library
                 this.Armor = value;
             }
         }
-         public List<Item> inventory
+        public List<Item> inventory
         {
             get
             {
@@ -67,7 +67,7 @@ namespace Library
 
         public void ReceiveAttack(int damage)
         {
-            this.health -= damage * 3 / (this.armor + 1);
+            this.health = this.health - (damage / (this.armor + 1));
             Console.WriteLine($"El personaje {this.name} ha sido atacado y su vida ahora es de {this.health}");
         }
 
@@ -123,6 +123,13 @@ namespace Library
         public int TotalAttack()
         {
             int attackValue = this.attack;
+            return attackValue;
+        }
+
+        public int ReturnTotalAttack()
+        {
+            int attackValue =  this.attack;
+            Console.WriteLine($"El daño total del personaje {this.name} es de {attackValue}");
             return attackValue;
         }
 
