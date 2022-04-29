@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library
 {
-    public class Dwarf
+    public class Elf
     {
 
         private string Name;
@@ -11,7 +11,7 @@ namespace Library
         private int Attack;
         private int Armor;
         private List<Item> Inventory { get; set; }
-        public Dwarf(string name, int attack)
+        public Elf(string name, int attack)
         {
             this.Name = name;
             this.Attack = attack;
@@ -69,23 +69,29 @@ namespace Library
             this.Health = 100;
         }
 
+        /// <summary>
+        /// Metodo para equipar el Item, primero se fija que no este en el inventario y si no está lo agrega.
+        /// </summary>
+        /// <param name="item"></param>
         public void EquipItem(Item item)
         {
-            bool added = false;
+            bool agregado = false;
             foreach (Item value in this.Inventory)
             {
                 if (value.ReturnName() == item.ReturnName())
                 {
-                    added = true;
+                    Console.WriteLine($"El objeto {item.ReturnName()} ya se encuentra dentro del inventario del personaje {this.name}");
+                    agregado = true;
                 }
             }
 
-            if (!added)
+            if (!agregado)
             {
                 this.Inventory.Add(item);
                 this.Attack += item.ReturnDamage();
                 this.Armor += item.ReturnArmor();
                 Console.WriteLine($"Objeto {item.ReturnName()} agregado correctamente al personaje {this.name}.");
+
             }
         }
 
@@ -114,7 +120,7 @@ namespace Library
         }
 
         /// <summary>
-        /// Metodo que retorna el valor total de ataque del personaje Dwarf
+        /// Metodo que retorna el valor total de ataque del personaje Elf
         /// </summary>
         public void ReturnTotalAttack()
         {
