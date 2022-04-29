@@ -57,10 +57,17 @@ namespace Library
                 this.Armor = value;
             }
         }
+        public List<Item> inventory
+        {
+            get
+            {
+                return this.Inventory;
+            }
+        }
 
         public void ReceiveAttack(int damage)
         {
-            this.health -= damage * 3 / (this.armor + 1);
+            this.health -= damage  / (this.armor + 1);
             Console.WriteLine($"El personaje {this.name} ha sido atacado y su vida ahora es de {this.health}");
         }
 
@@ -103,7 +110,7 @@ namespace Library
         }
 
         /// <summary>
-        /// Metodo que retorna el ataque total del personaje Elf en base a los items que tiene equipados en el inventario y su propio ataque
+        /// Metodo que retorna el ataque total del personaje Dwarf en base a los items que tiene equipados en el inventario y su propio ataque
         /// Este metodo es usado para calcular el daño que debe realizarle al enemigo.
         /// </summary>
         /// <returns></returns>
