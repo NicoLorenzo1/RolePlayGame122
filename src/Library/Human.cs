@@ -57,6 +57,13 @@ namespace Library
                 this.Armor = value;
             }
         }
+         public List<Item> inventory
+        {
+            get
+            {
+                return this.Inventory;
+            }
+        }
 
         public void ReceiveAttack(int damage)
         {
