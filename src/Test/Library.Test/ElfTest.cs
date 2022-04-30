@@ -21,7 +21,7 @@ namespace Test.Library
         }
 
         [Test]
-        public void CuteTest()
+        public void CureTest()
         {
             Elf elf = new Elf("Elfo", 10);
             Item dagger = new Item("Daga", 5, 0);

@@ -3,9 +3,13 @@ using System.Collections.Generic;
 
 namespace Library
 {
+    /// <summary>
+    /// Clase wizzard la cual cumple con el patron SRP ya que en caso de querer realizar una modificacion al wizzard se puede hacer
+    /// sin necesidad de hacer grandes cambios en el codigo.
+    /// Tambien cumple con el patron Expert ya que conoce todo lo necesario para realizar sus funciones.
+    /// </summary>
     public class Wizzard
     {
-
         /// <summary>
         /// Constructor de la clase wizzard la cual recibe un nombre, un valor de ataque y un libro de hechizos por parametro, la vida de este ya se setea en 100 al crearlo.
         /// </summary>
@@ -173,7 +177,7 @@ namespace Library
         /// </summary>
         public int ReturnTotalAttack()
         {
-            int attackValue =  this.attack;
+            int attackValue = this.attack;
             Console.WriteLine($"El daño total del personaje {this.name} es de {attackValue}");
             return attackValue;
         }

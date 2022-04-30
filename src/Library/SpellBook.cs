@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace Library
 {
+    /// <summary>
+    /// Clase SpellBook la cual cumple con el patron SRP con la finalidad de solamente encargarse de los spell, tambien cumple 
+    /// con el patron Expert ya que conoce toda la información necesaria para realizar su función.
+    /// </summary>
     public class SpellBook
     {
         private string name;
