@@ -58,6 +58,13 @@ namespace Library
             }
         }
 
+        public List<Item> inventory
+        {
+            get{
+                return this.Inventory;
+            }
+        }
+
         public void ReceiveAttack(int damage)
         {
             this.health = this.health - (damage / (this.armor + 1));
