@@ -83,7 +83,7 @@ namespace Test.Library
             Elf elf = new Elf("Elfo", 10);
             Item dagger = new Item("Daga", 5, 0);
             elf.EquipItem(dagger);
-            Assert.AreEqual(50, elf.TotalAttack());
+            Assert.AreEqual(15, elf.TotalAttack());
         }
 
         [Test]
@@ -92,7 +92,7 @@ namespace Test.Library
             Elf elf = new Elf("Elfo", 10);
             Item dagger = new Item("Daga", 5, 0);
             elf.EquipItem(dagger);
-            Assert.AreEqual(50, elf.TotalAttack());
+            Assert.AreEqual(15, elf.TotalAttack());
         }
 
         [Test]
